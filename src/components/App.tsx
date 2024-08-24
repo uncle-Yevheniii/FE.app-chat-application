@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { Authorization, Chat } from './pages'
+import { Authorization, Chat } from '../pages'
 
 export default function App() {
     return (
