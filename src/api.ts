@@ -12,3 +12,8 @@ export const CreateUser = async ({ firstName, lastName }: { firstName: string; l
     const response = await axios.post('/users/create', { firstName, lastName })
     return response.data
 }
+
+export const DeleteUser = async (id: string) => {
+    const response = await axios.delete(`/users/delete/${id}`)
+    return response.data
+}

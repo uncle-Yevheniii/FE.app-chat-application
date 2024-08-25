@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 
 interface ChatPageProps {
     userData: {
+        _id: string
         firstName: string
         lastName: string
     }

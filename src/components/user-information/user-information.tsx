@@ -1,9 +1,11 @@
+import { DeleteUser } from '@/api'
 import { Formik, Form, Field } from 'formik'
 import { useState } from 'react'
 import Modal from 'react-modal'
 
 interface UserInformationProps {
     userData: {
+        _id: string
         firstName: string
         lastName: string
     }
@@ -12,6 +14,8 @@ interface UserInformationProps {
 Modal.setAppElement('#root')
 
 export function UserInformation({ userData }: UserInformationProps) {
+    console.log(typeof userData._id)
+
     const [modalIsOpen, setIsOpen] = useState<boolean>(false)
     function openModal() {
         setIsOpen(true)
@@ -93,7 +97,20 @@ export function UserInformation({ userData }: UserInformationProps) {
 
                 <div>
                     <p>Danger zone</p>
-                    <button>Delete account</button>
+                    <button
+                        onClick={async () => {
+                            await DeleteUser(userData._id)
+                                .then(() => {
+                                    window.localStorage.clear()
+                                    window.location.reload()
+                                })
+                                .catch((err) => {
+                                    console.log(err)
+                                })
+                        }}
+                    >
+                        Delete account
+                    </button>
                 </div>
             </Modal>
         </div>
