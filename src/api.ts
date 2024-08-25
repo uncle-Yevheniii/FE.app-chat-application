@@ -1,12 +1,14 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:8080'
+axios.defaults.baseURL = 'http://localhost:7788'
 
 export const HealthCheck = async ({ controller }: { controller: AbortController }) => {
-    try {
-        const response = await axios.get('/ping', { signal: controller.signal })
-        return response.data
-    } catch (error) {
-        return error
-    }
+    const response = await axios.get('/ping', { signal: controller.signal })
+
+    return response.data
+}
+
+export const CreateUser = async ({ firstName, lastName }: { firstName: string; lastName: string }) => {
+    const response = await axios.post('/users/create', { firstName, lastName })
+    return response.data
 }

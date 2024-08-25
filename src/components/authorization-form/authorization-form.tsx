@@ -1,9 +1,14 @@
+import { Dispatch, SetStateAction } from 'react'
 import { Form, Formik, FormikHelpers } from 'formik'
-import { FormState } from './types'
 import { Input } from './input/input'
+import { FormState } from './types'
 import { ValidationSchema } from './validation'
+import { CreateUser } from '@/api'
 
-export function AuthorizationForm() {
+interface AuthorizationFormProps {
+    setLocalStorage: Dispatch<SetStateAction<object>>
+}
+export function AuthorizationForm({ setLocalStorage }: AuthorizationFormProps) {
     return (
         <>
             <Formik
@@ -12,7 +17,9 @@ export function AuthorizationForm() {
                     firstName: '',
                     lastName: ''
                 }}
-                onSubmit={(value: FormState, { resetForm }: FormikHelpers<FormState>) => {
+                onSubmit={async (value: FormState, { resetForm }: FormikHelpers<FormState>) => {
+                    const { user } = await CreateUser(value)
+                    setLocalStorage(user)
                     resetForm()
                 }}
             >
