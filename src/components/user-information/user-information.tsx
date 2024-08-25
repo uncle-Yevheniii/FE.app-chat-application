@@ -1,6 +1,7 @@
 import { DeleteUser } from '@/api'
 import { Formik, Form, Field } from 'formik'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import Modal from 'react-modal'
 
 interface UserInformationProps {
@@ -37,6 +38,7 @@ export function UserInformation({ userData }: UserInformationProps) {
                 <button onClick={openModal}>Edit</button>
                 <button
                     onClick={() => {
+                        toast.success('Logout done')
                         window.localStorage.clear()
                         window.location.reload()
                     }}
@@ -80,6 +82,7 @@ export function UserInformation({ userData }: UserInformationProps) {
                     initialValues={{ firstName: '', lastName: '' }}
                     onSubmit={(value) => {
                         console.log(value)
+                        toast.success('Successfully edited!')
                     }}
                 >
                     <Form autoComplete="off">
@@ -101,11 +104,13 @@ export function UserInformation({ userData }: UserInformationProps) {
                         onClick={async () => {
                             await DeleteUser(userData._id)
                                 .then(() => {
+                                    toast.success('Successfully deleted!')
                                     window.localStorage.clear()
-                                    window.location.reload()
+                                    setTimeout(() => window.location.reload(), 1500)
                                 })
                                 .catch((err) => {
                                     console.log(err)
+                                    toast.error('This is an error!')
                                 })
                         }}
                     >

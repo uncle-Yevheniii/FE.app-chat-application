@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import { Authorization, Chat } from '../pages'
 import { useEffect, useState } from 'react'
@@ -22,6 +23,7 @@ export default function App() {
                 <Route path="/chat" element={data !== null ? <Chat userData={data} /> : <Navigate to="/authorization" />} />
                 <Route path="*" element={<Navigate to="/authorization" />} />
             </Routes>
+            <Toaster />
         </>
     )
 }

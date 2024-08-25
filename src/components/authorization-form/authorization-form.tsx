@@ -4,6 +4,7 @@ import { Input } from './input/input'
 import { FormState } from './types'
 import { ValidationSchema } from './validation'
 import { CreateUser } from '@/api'
+import toast from 'react-hot-toast'
 
 interface AuthorizationFormProps {
     setLocalStorage: Dispatch<SetStateAction<object>>
@@ -19,7 +20,8 @@ export function AuthorizationForm({ setLocalStorage }: AuthorizationFormProps) {
                 }}
                 onSubmit={async (value: FormState, { resetForm }: FormikHelpers<FormState>) => {
                     const { user } = await CreateUser(value)
-                    setLocalStorage(user)
+                    toast.success('User created')
+                    setTimeout(() => setLocalStorage(user), 1500)
                     resetForm()
                 }}
             >
