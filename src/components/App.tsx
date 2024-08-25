@@ -23,7 +23,7 @@ export default function App() {
                 <Route path="/chat" element={data !== null ? <Chat userData={data} /> : <Navigate to="/authorization" />} />
                 <Route path="*" element={<Navigate to="/authorization" />} />
             </Routes>
-            <Toaster />
+            <Toaster toastOptions={{ duration: 1500 }} />
         </>
     )
 }
