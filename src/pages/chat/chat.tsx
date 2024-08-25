@@ -8,11 +8,10 @@ interface ChatPageProps {
     }
 }
 export default function ChatPage({ userData }: ChatPageProps) {
-    console.log(userData)
     return (
         <div>
             <Helmet>
-                <title>Authorization</title>
+                <title>Chat</title>
             </Helmet>
 
             <UserInformation userData={userData} />
