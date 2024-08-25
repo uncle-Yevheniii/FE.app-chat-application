@@ -1,4 +1,4 @@
-import { DeleteUser } from '@/api'
+import { DeleteUser, UpdateUser } from '@/api'
 import { Formik, Form, Field } from 'formik'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -15,8 +15,6 @@ interface UserInformationProps {
 Modal.setAppElement('#root')
 
 export function UserInformation({ userData }: UserInformationProps) {
-    console.log(typeof userData._id)
-
     const [modalIsOpen, setIsOpen] = useState<boolean>(false)
     function openModal() {
         setIsOpen(true)
@@ -80,9 +78,15 @@ export function UserInformation({ userData }: UserInformationProps) {
                 <div>Edit profile name</div>
                 <Formik
                     initialValues={{ firstName: '', lastName: '' }}
-                    onSubmit={(value) => {
-                        console.log(value)
-                        toast.success('Successfully edited!')
+                    onSubmit={async (value) => {
+                        await UpdateUser({ ...value, _id: userData._id })
+                            .then(() => {
+                                toast.success('Successfully edited!')
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                                toast.error('This is an error!')
+                            })
                     }}
                 >
                     <Form autoComplete="off">
