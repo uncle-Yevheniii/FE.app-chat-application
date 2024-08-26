@@ -1,7 +1,9 @@
+import { Helmet } from 'react-helmet-async'
+import { Dispatch, SetStateAction } from 'react'
+import { Chats } from '@/components/chats/chats'
+import { CurrentChat } from '@/components/current-chat/current-chat'
 import { IUserData } from '@/components/type'
 import { UserInformation } from '@/components/user-information/user-information'
-import { Dispatch, SetStateAction } from 'react'
-import { Helmet } from 'react-helmet-async'
 
 interface ChatPageProps {
     userData: IUserData
@@ -15,6 +17,9 @@ export default function ChatPage({ userData, setData }: ChatPageProps) {
             </Helmet>
 
             <UserInformation userData={userData} setData={setData} />
+            <Chats />
+
+            <CurrentChat />
         </div>
     )
 }
