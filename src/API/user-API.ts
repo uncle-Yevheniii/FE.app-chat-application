@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:8080'
+axios.defaults.baseURL = 'https://be-app-chat-application.onrender.com'
 
 export const HealthCheck = async () => {
     const response = await axios.get('/ping')
