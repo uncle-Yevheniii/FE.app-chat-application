@@ -11,3 +11,8 @@ export const UpdateChat = async (owner_id, chat_id, data) => {
     const response = await axios.patch(`/chats/update/${chat_id}`, data, { params: { userId: owner_id } })
     return response.data
 }
+
+export const DeleteChat = async (owner_id, chat_id) => {
+    const response = await axios.delete(`/chats/delete/${chat_id}`, { params: { userId: owner_id } })
+    return response.data
+}
