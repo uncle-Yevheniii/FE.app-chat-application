@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast'
-import { DeleteUser } from '@/api'
+import { DeleteUser } from '@/API/user-API'
 import { ModalDangerZoneProps } from '../../type'
 
 enum TOAST_TEXT {

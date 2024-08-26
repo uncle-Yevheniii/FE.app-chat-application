@@ -2,7 +2,7 @@ import { Formik, Form, FormikHelpers } from 'formik'
 import { ModalFormProps } from '../../type'
 import { Input } from '@/components/ui/input/input'
 import toast from 'react-hot-toast'
-import { UpdateUser } from '@/api'
+import { UpdateUser } from '@/API/user-API'
 import { FormState } from './type'
 
 export function ModalForm({ userData, setData, closeModal }: ModalFormProps) {

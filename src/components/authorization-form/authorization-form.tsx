@@ -4,7 +4,7 @@ import { Form, Formik, FormikHelpers } from 'formik'
 import { Input } from '../ui/input/input'
 import { FormState } from './types'
 import { ValidationSchema } from './validation'
-import { CreateUser } from '@/api'
+import { CreateUser } from '@/API/user-API'
 import { IUserData } from '../type'
 
 interface AuthorizationFormProps {
