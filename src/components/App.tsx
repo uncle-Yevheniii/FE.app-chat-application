@@ -15,12 +15,11 @@ export default function App() {
     useEffect(() => {
         window.localStorage.setItem(USER, JSON.stringify(data))
     }, [data])
-
     return (
         <>
             <Routes>
                 <Route path="/authorization" element={data !== null ? <Navigate to="/chat" /> : <Authorization setLocalStorage={setData} />} />
-                <Route path="/chat" element={data !== null ? <Chat userData={data} /> : <Navigate to="/authorization" />} />
+                <Route path="/chat" element={data !== null ? <Chat userData={data} setData={setData} /> : <Navigate to="/authorization" />} />
                 <Route path="*" element={<Navigate to="/authorization" />} />
             </Routes>
             <Toaster toastOptions={{ duration: 1500 }} />

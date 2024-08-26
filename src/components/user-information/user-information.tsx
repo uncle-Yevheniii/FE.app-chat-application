@@ -1,6 +1,6 @@
 import { DeleteUser, UpdateUser } from '@/api'
 import { Formik, Form, Field } from 'formik'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import toast from 'react-hot-toast'
 import Modal from 'react-modal'
 
@@ -10,11 +10,12 @@ interface UserInformationProps {
         firstName: string
         lastName: string
     }
+    setData: Dispatch<SetStateAction<object>>
 }
 
 Modal.setAppElement('#root')
 
-export function UserInformation({ userData }: UserInformationProps) {
+export function UserInformation({ userData, setData }: UserInformationProps) {
     const [modalIsOpen, setIsOpen] = useState<boolean>(false)
     function openModal() {
         setIsOpen(true)
@@ -80,8 +81,10 @@ export function UserInformation({ userData }: UserInformationProps) {
                     initialValues={{ firstName: '', lastName: '' }}
                     onSubmit={async (value) => {
                         await UpdateUser({ ...value, _id: userData._id })
-                            .then(() => {
+                            .then(({ user }) => {
                                 toast.success('Successfully edited!')
+                                setData({ _id: userData._id, ...user })
+                                closeModal()
                             })
                             .catch((err) => {
                                 console.log(err)
