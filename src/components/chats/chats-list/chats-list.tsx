@@ -4,7 +4,6 @@ import { ChatsButtons } from './chats-buttons/chats-buttons'
 export function ChatsList({ chatData, userData, setChat }: ChatsListProps) {
     return (
         <div>
-            <h1>Chats</h1>
             <ul>
                 {chatData.map((item) => (
                     <li key={item._id}>
