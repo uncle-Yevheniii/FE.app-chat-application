@@ -2,24 +2,29 @@ import toast from 'react-hot-toast'
 import { Formik, FormikHelpers } from 'formik'
 import { ModalFormProps } from '../../type'
 import { Form } from '@/components/ui/form/form'
-import { UpdateUser } from '@/API/user-API'
 import { FormState } from './type'
+import { CreateChat } from '@/API/chat-API'
 
-export function ModalForm({ userData, setData, closeModal }: ModalFormProps) {
+enum TOAST_TEXT {
+    SUCCESS = 'Chat created',
+    ERROR = 'This is an error'
+}
+
+export function ModalForm({ userData, setChat, closeModal }: ModalFormProps) {
     return (
         <Formik
             initialValues={{ firstName: '', lastName: '' }}
-            onSubmit={async (value: FormState, { resetForm }: FormikHelpers<FormState>) => {
-                await UpdateUser({ ...value, _id: userData._id })
-                    .then(({ user }) => {
-                        toast.success('Successfully edited!')
-                        setData({ _id: userData._id, ...user })
+            onSubmit={async (value, { resetForm }: FormikHelpers<FormState>) => {
+                await CreateChat(userData._id, value)
+                    .then(({ chat }) => {
+                        toast.success(TOAST_TEXT.SUCCESS)
+                        setChat((prev) => [...prev, chat])
                         resetForm()
                         closeModal()
                     })
                     .catch((err) => {
+                        toast.error(TOAST_TEXT.ERROR)
                         console.log(err)
-                        toast.error('This is an error!')
                     })
             }}
         >

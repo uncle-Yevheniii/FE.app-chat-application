@@ -1,7 +1,7 @@
 import toast from 'react-hot-toast'
 import { Dispatch, SetStateAction } from 'react'
-import { Form, Formik, FormikHelpers } from 'formik'
-import { Input } from '../ui/input/input'
+import { Formik, FormikHelpers } from 'formik'
+import { Form } from '@/components/ui/form/form'
 import { FormState } from './types'
 import { ValidationSchema } from './validation'
 import { CreateUser } from '@/API/user-API'
@@ -20,10 +20,7 @@ export function AuthorizationForm({ setLocalStorage }: AuthorizationFormProps) {
         <>
             <Formik
                 validationSchema={ValidationSchema}
-                initialValues={{
-                    firstName: '',
-                    lastName: ''
-                }}
+                initialValues={{ firstName: '', lastName: '' }}
                 onSubmit={async (value: FormState, { resetForm }: FormikHelpers<FormState>) => {
                     await CreateUser(value)
                         .then(({ user }) => {
@@ -37,11 +34,7 @@ export function AuthorizationForm({ setLocalStorage }: AuthorizationFormProps) {
                         })
                 }}
             >
-                <Form autoComplete="off">
-                    <Input label="First Name" id="firstName" name="firstName" placeholder="First Name" />
-                    <Input label="Last Name" id="lastName" name="lastName" placeholder="Last Name" />
-                    <button type="submit">Submit</button>
-                </Form>
+                <Form />
             </Formik>
         </>
     )
