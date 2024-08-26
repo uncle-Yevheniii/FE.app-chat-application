@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:8080'
+axios.defaults.baseURL = 'https://be-app-chat-application.onrender.com'
 
 export const CreateChat = async (owner_id, data) => {
     const response = await axios.post('/chats/create', data, { params: { userId: owner_id } })
