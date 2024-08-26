@@ -16,24 +16,22 @@ export function AuthorizationForm({ setLocalStorage }: AuthorizationFormProps) {
         ERROR = 'This is an error'
     }
 
+    const onCreateUser = async (value: FormState, { resetForm }: FormikHelpers<FormState>) => {
+        await CreateUser(value)
+            .then(({ user }) => {
+                toast.success(TOAST_TEXT.SUCCESS)
+                setTimeout(() => setLocalStorage(user), 1500)
+                resetForm()
+            })
+            .catch((err) => {
+                toast.error(TOAST_TEXT.ERROR)
+                console.log(err)
+            })
+    }
+
     return (
         <>
-            <Formik
-                validationSchema={ValidationSchema}
-                initialValues={{ firstName: '', lastName: '' }}
-                onSubmit={async (value: FormState, { resetForm }: FormikHelpers<FormState>) => {
-                    await CreateUser(value)
-                        .then(({ user }) => {
-                            toast.success(TOAST_TEXT.SUCCESS)
-                            setTimeout(() => setLocalStorage(user), 1500)
-                            resetForm()
-                        })
-                        .catch((err) => {
-                            toast.error(TOAST_TEXT.ERROR)
-                            console.log(err)
-                        })
-                }}
-            >
+            <Formik validationSchema={ValidationSchema} initialValues={{ firstName: '', lastName: '' }} onSubmit={onCreateUser}>
                 <Form />
             </Formik>
         </>

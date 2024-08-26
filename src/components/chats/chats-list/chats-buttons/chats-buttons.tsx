@@ -14,27 +14,24 @@ export function ChatsButtons({ setChat, userData, chatId, chatData }: ChatsButto
     const openModal = (): void => setIsOpen(true)
     const closeModal = (): void => setIsOpen(false)
 
+    const onDeleteChat = async () =>
+        await DeleteChat(userData._id, chatId)
+            .then(() => {
+                const currentChat = chatData.filter((chat) => chat._id !== chatId)
+                toast.success(TOAST_TEXT.SUCCESS)
+                setChat(currentChat)
+            })
+            .catch((err) => {
+                toast.error(TOAST_TEXT.ERROR)
+                console.log(err)
+            })
+
     return (
         <div>
             <button type="button" onClick={openModal}>
                 Edit
             </button>
-            <button
-                type="button"
-                onClick={async () => {
-                    return DeleteChat(userData._id, chatId)
-                        .then(() => {
-                            const currentChat = chatData.filter((chat) => chat._id !== chatId)
-                            toast.success(TOAST_TEXT.SUCCESS)
-                            setChat(currentChat)
-                        })
-
-                        .catch((err) => {
-                            toast.error(TOAST_TEXT.ERROR)
-                            console.log(err)
-                        })
-                }}
-            >
+            <button type="button" onClick={onDeleteChat}>
                 Delete
             </button>
 
