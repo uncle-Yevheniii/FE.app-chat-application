@@ -2,6 +2,7 @@ import { Toaster } from 'react-hot-toast'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import { Authorization, Chat } from '../pages'
 import { useEffect, useState } from 'react'
+import { IUserData } from './type'
 
 const USER: string = 'user_info'
 const localStorage = () => {
@@ -11,7 +12,7 @@ const localStorage = () => {
 }
 
 export default function App() {
-    const [data, setData] = useState(localStorage)
+    const [data, setData] = useState<IUserData | null>(localStorage)
     useEffect(() => {
         window.localStorage.setItem(USER, JSON.stringify(data))
     }, [data])

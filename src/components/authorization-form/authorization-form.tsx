@@ -1,15 +1,21 @@
+import toast from 'react-hot-toast'
 import { Dispatch, SetStateAction } from 'react'
 import { Form, Formik, FormikHelpers } from 'formik'
-import { Input } from './input/input'
+import { Input } from '../ui/input/input'
 import { FormState } from './types'
 import { ValidationSchema } from './validation'
 import { CreateUser } from '@/api'
-import toast from 'react-hot-toast'
+import { IUserData } from '../type'
 
 interface AuthorizationFormProps {
-    setLocalStorage: Dispatch<SetStateAction<object>>
+    setLocalStorage: Dispatch<SetStateAction<IUserData | null>>
 }
 export function AuthorizationForm({ setLocalStorage }: AuthorizationFormProps) {
+    enum TOAST_TEXT {
+        SUCCESS = 'User created',
+        ERROR = 'This is an error'
+    }
+
     return (
         <>
             <Formik
@@ -19,10 +25,16 @@ export function AuthorizationForm({ setLocalStorage }: AuthorizationFormProps) {
                     lastName: ''
                 }}
                 onSubmit={async (value: FormState, { resetForm }: FormikHelpers<FormState>) => {
-                    const { user } = await CreateUser(value)
-                    toast.success('User created')
-                    setTimeout(() => setLocalStorage(user), 1500)
-                    resetForm()
+                    await CreateUser(value)
+                        .then(({ user }) => {
+                            toast.success(TOAST_TEXT.SUCCESS)
+                            setTimeout(() => setLocalStorage(user), 1500)
+                            resetForm()
+                        })
+                        .catch((err) => {
+                            toast.error(TOAST_TEXT.ERROR)
+                            console.log(err)
+                        })
                 }}
             >
                 <Form autoComplete="off">
