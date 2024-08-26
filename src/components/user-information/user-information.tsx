@@ -5,13 +5,15 @@ import { UserButtons } from './user-buttons/user-buttons'
 import { ModalContent } from './modal-content/modal-content'
 import { ModalComponent } from '../ui/modal/modal'
 
+import style from './style.module.css'
+
 export function UserInformation({ userData, setData }: UserInformationProps) {
     const [modalIsOpen, setIsOpen] = useState<boolean>(false)
     const openModal = (): void => setIsOpen(true)
     const closeModal = (): void => setIsOpen(false)
 
     return (
-        <div>
+        <div className={style.container}>
             <UserGreetings firstName={userData.firstName} lastName={userData.lastName} />
             <UserButtons openModal={openModal} />
 

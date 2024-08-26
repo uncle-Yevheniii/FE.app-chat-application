@@ -1,9 +1,11 @@
-import { Helmet } from 'react-helmet-async'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Chats } from '@/components/chats/chats'
 import { CurrentChat } from '@/components/current-chat/current-chat'
 import { IChatData, IUserData } from '@/components/type'
 import { UserInformation } from '@/components/user-information/user-information'
+
+import style from './style.module.css'
 
 interface ChatPageProps {
     userData: IUserData
@@ -22,15 +24,17 @@ export default function ChatPage({ userData, setData }: ChatPageProps) {
         window.localStorage.setItem(CHAT, JSON.stringify(chat))
     }, [chat])
     return (
-        <div>
+        <>
             <Helmet>
                 <title>Chat</title>
             </Helmet>
-
-            <UserInformation userData={userData} setData={setData} />
-            <Chats userData={userData} chatData={chat} setChat={setChat} />
-
-            <CurrentChat />
-        </div>
+            <div className={style.container}>
+                <div className={style.userAndChats}>
+                    <UserInformation userData={userData} setData={setData} />
+                    <Chats userData={userData} chatData={chat} setChat={setChat} />
+                </div>
+                <CurrentChat />
+            </div>
+        </>
     )
 }

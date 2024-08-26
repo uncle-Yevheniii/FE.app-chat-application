@@ -1,0 +1,17 @@
+.chatsList {
+    max-height: 70vh;
+    overflow: auto;
+    margin-bottom: 0.5rem;
+}
+.chatsListItem {
+    padding: 0.3rem;
+    margin-top: 1rem;
+    border-bottom: 2px solid gray;
+    color: black;
+}
+.noChats {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: black;
+}

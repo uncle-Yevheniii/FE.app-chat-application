@@ -5,6 +5,8 @@ import { ModalContent } from './modal-content/modal-content'
 import { ChatsButtonsProps } from '../../type'
 import { DeleteChat } from '@/API/chat-API'
 
+import style from './style.module.css'
+
 enum TOAST_TEXT {
     SUCCESS = 'Chat created',
     ERROR = 'This is an error'
@@ -27,11 +29,11 @@ export function ChatsButtons({ setChat, userData, chatId, chatData }: ChatsButto
             })
 
     return (
-        <div>
-            <button type="button" onClick={openModal}>
+        <div className={style.container}>
+            <button className={style.btn} type="button" onClick={openModal}>
                 Edit
             </button>
-            <button type="button" onClick={onDeleteChat}>
+            <button className={style.btn} type="button" onClick={onDeleteChat}>
                 Delete
             </button>
 

@@ -1,0 +1,20 @@
+.container {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.btn {
+    padding: 0.2rem 0.7rem;
+    border-radius: 0.5rem;
+    color: rgb(61, 168, 234);
+    border: 1px solid gray;
+    background-color: lightgray;
+
+    transition: all ease-in;
+}
+.btn:focus,
+.btn:hover {
+    color: white;
+    background-color: lightslategray;
+}
