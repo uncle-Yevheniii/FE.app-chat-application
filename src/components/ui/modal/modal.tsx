@@ -19,11 +19,12 @@ export function ModalComponent({ modalIsOpen, setIsOpen, children }: IModalProps
                 },
                 content: {
                     position: 'absolute',
-                    top: '40px',
-                    left: '40px',
-                    right: '40px',
-                    bottom: '40px',
-                    border: '1px solid #ccc',
+                    top: '120px',
+                    left: '120px',
+                    right: '120px',
+                    bottom: '120px',
+
+                    border: '2px solid gray',
                     background: '#fff',
                     overflow: 'auto',
                     WebkitOverflowScrolling: 'touch',

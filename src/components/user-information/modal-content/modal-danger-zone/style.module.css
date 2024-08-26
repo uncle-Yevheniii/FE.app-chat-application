@@ -1,0 +1,36 @@
+.margin {
+    margin-top: 1rem;
+}
+.container {
+    display: block;
+    margin: auto;
+    max-width: 300px;
+    padding: 0.5rem 5rem;
+    border-radius: 0.5rem;
+    border: 3px dotted red;
+}
+.titleDanger {
+    text-align: center;
+    font-size: 1rem;
+    color: red;
+    font-weight: bold;
+
+    margin: 0.2rem 0 0.5rem;
+}
+
+.btnDanger {
+    display: block;
+    margin: auto;
+    padding: 0.2rem 0.7rem;
+    border-radius: 0.5rem;
+    color: white;
+    border: 1px solid gray;
+    background-color: red;
+
+    transition: all ease-in;
+}
+.btnDanger:focus,
+.btnDanger:hover {
+    color: red;
+    background-color: lightslategray;
+}

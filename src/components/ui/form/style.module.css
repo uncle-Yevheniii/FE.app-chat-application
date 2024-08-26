@@ -1,5 +1,11 @@
+.form > div {
+    margin-bottom: 1rem;
+}
+
 .btn {
-    padding: 0.2rem 0.7rem;
+    display: block;
+    margin: auto;
+    padding: 0.3rem 5rem;
     border-radius: 0.5rem;
     color: rgb(61, 168, 234);
     border: 1px solid gray;
@@ -11,12 +17,4 @@
 .btn:hover {
     color: white;
     background-color: lightslategray;
-}
-.title {
-    text-align: center;
-    font-size: 1rem;
-    color: black;
-    font-weight: bold;
-
-    margin: 1rem 0;
 }

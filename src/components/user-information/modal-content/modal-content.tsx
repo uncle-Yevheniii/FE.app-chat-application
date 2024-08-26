@@ -7,8 +7,10 @@ import style from './style.module.css'
 export function ModalContent({ userData, setData, closeModal }: ModalContentProps) {
     return (
         <div className={style.container}>
-            <button onClick={closeModal}>close</button>
-            <p>Edit profile name</p>
+            <button className={style.btn} onClick={closeModal}>
+                close
+            </button>
+            <p className={style.title}>Edit profile name</p>
 
             <ModalForm userData={userData} setData={setData} closeModal={closeModal} />
             <ModalDangerZone userData={userData} />
