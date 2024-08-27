@@ -22,6 +22,7 @@ export default function App() {
     return (
         <>
             <Routes>
+                <Route path="/" element={<Navigate to="/authorization" />} />
                 <Route path="/authorization" element={data !== null ? <Navigate to="/chat" /> : <Authorization setLocalStorage={setData} />} />
                 <Route path="/chat" element={data !== null ? <Chat userData={data} setData={setData} /> : <Navigate to="/authorization" />} />
                 <Route path="*" element={<Navigate to="/authorization" />} />
